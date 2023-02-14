@@ -1,0 +1,15 @@
+name: 'Test without Building iOS Application'
+description: 'Test without building'
+author: 'umutSERIFLER'
+branding:
+  icon: 'send'
+  color: 'blue'
+
+inputs:
+ projectName:
+  description: "Project name is an input that will be used for action"
+  required: true
+
+runs:
+  using: 'composite'
+  main: 'src/test_without_building.yml'
