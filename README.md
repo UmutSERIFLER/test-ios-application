@@ -1,2 +1,2 @@
-# publish-ios-appstore
-Publish iOS Application to Appstore
+# test-ios-application
+Test iOS Application
