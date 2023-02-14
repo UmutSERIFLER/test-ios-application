@@ -1,0 +1,22 @@
+name: Test Project
+on:
+  push:
+
+jobs:
+  build_with_signing:
+    runs-on: macos-latest
+
+    inputs:
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Clean Project
+        run: |
+            xcodebuild clean -project ${{ inputs.projectName }}.xcodeproj -scheme ${{ inputs.projectName }} -destination 'generic/platform=iOS'
+      - name: Build for Testing
+        run: |
+           xcodebuild build-for-testing -scheme ${{ inputs.projectName }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      - name: Test Without Building
+        run: |
+           xcodebuild test-without-building -scheme ${{ inputs.projectName }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
