@@ -11,14 +11,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
     - name: Clean Project
       run: |
         xcodebuild clean -project ${{ inputs.projectName }}.xcodeproj -scheme ${{ inputs.projectName }} -destination 'generic/platform=iOS'
+      shell: bash
     - name: Build for Testing
       run: |
         xcodebuild build-for-testing -scheme ${{ inputs.projectName }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      shell: bash
     - name: Test Without Building
       run: |
         xcodebuild test-without-building -scheme ${{ inputs.projectName }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      shell: bash
